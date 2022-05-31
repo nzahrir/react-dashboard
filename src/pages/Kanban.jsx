@@ -5,8 +5,27 @@ import {
   ColumnDirective,
 } from "@syncfusion/ej2-react-kanban";
 
+import { kanbanData, kanbanGrid } from "../data/dummy";
+import { Header } from "../components";
+
 const Kanban = () => {
-  return <div>Kanban</div>;
+  return (
+    <div>
+      <Header category="App" title="Kanban" />
+      <KanbanComponent
+        id="kanban"
+        dataSource={kanban}
+        cardSettings={{ contentField: "Summary", headerField: "Id" }}
+        keyField="Status"
+      >
+        <ColumnsDirective>
+          {kanbanGrid.map((item, index) => (
+            <ColumnDirective key={index} {...item} />
+          ))}
+        </ColumnsDirective>
+      </KanbanComponent>
+    </div>
+  );
 };
 
 export default Kanban;
