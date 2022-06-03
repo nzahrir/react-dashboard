@@ -28,12 +28,24 @@ import { useStateContext } from "./contexts/ContextProvider";
 
 const App = () => {
   const {
+    setCurrentColor,
+    setCurrentMode,
     activeMenu,
     themeSettings,
     setThemeSettings,
     currentColor,
     currentMode,
   } = useStateContext();
+
+  useEffect(() => {
+    const currentThemeColor = localStorage.getItem("colorMode");
+    const currentThemeMode = localStorage.getItem("themeMode");
+    if (currentThemeColor && currentThemeMode) {
+      setCurrentColor(currentThemeColor);
+      setCurrentMode(currentThemeMode);
+    }
+  }, []);
+
   return (
     <div className={currentMode === "Dark" ? "dark" : ""}>
       <BrowserRouter>
@@ -44,7 +56,7 @@ const App = () => {
                 type="button"
                 className="text-3xl p-3 hover:drop-shadow-xl hover:bg-light-gray text-white"
                 onClick={() => setThemeSettings(true)}
-                style={{ background: { currentColor }, borderRadius: "50%" }}
+                style={{ background: currentColor, borderRadius: "50%" }}
               >
                 <FiSettings />
               </button>
@@ -93,6 +105,7 @@ const App = () => {
                 <Route path="/stacked" element={<Stacked />} />
               </Routes>
             </div>
+            <Footer />
           </div>
         </div>
       </BrowserRouter>

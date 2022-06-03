@@ -11,7 +11,7 @@ const ThemeSettings = () => {
   return (
     <div>
       <div className="bg-half-transparent w-screen fixed nav-item top-0 right-0">
-        <div className="float-right h-screen dark:text-gray-200 bg-white dark:[#484b52]">
+        <div className="float-right h-screen dark:text-gray-200 bg-white dark:bg-gray-600">
           <div className="flex justify-between items-center p-4 ml-4">
             <p className="font-semibold text-lg">Settings</p>
             <button
@@ -64,7 +64,10 @@ const ThemeSettings = () => {
                   content={item.name}
                   position="TopCenter"
                 >
-                  <div className="relative mt-2 cursor-pointer flex gap-5 items-center">
+                  <div
+                    className="relative mt-2 cursor-pointer flex gap-5 items-center"
+                    key={item.name}
+                  >
                     <button
                       type="button"
                       className="h-10 w-10 rounded-full cursor-pointer"
@@ -73,7 +76,7 @@ const ThemeSettings = () => {
                     >
                       <BsCheck
                         className={`ml-2 text-2xl text-white 
-                    ${item.color === currentColor ? "block" : "hidden"}`}
+                        ${item.color === currentColor ? "block" : "hidden"}`}
                       />
                     </button>
                   </div>

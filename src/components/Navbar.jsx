@@ -70,7 +70,8 @@ const Navbar = () => {
         <NavButton
           title="Cart"
           customFunc={() => handleClick("cart")}
-          dotColor={currentColor}
+          color={currentColor}
+          dotColor="rgb(52,211,100)"
           icon={<FiShoppingCart />}
         />
         <NavButton
